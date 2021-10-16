@@ -40,6 +40,9 @@ spring:
     url: jdbc:mysql://localhost:3306/book_service
     user: rafael
     password: '051005'
+  sleuth:
+    sampler:
+      probability: 1.0
 
 springdoc:
   api-docs:

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "Book endpoint" )
+@Tag(name = "Book endpoint")
 @RestController
 @RequestMapping("book-service")
 public class BookController {
@@ -31,9 +31,8 @@ public class BookController {
     @Retry(name = "default", fallbackMethod = "fallbackMethod")
 //    @CircuitBreaker(name = "default", fallbackMethod = "fallbackMethod")
 //    @RateLimiter(name = "default")
-    public ResponseEntity<Book> findBook(
-            @PathVariable("id") Long id,
-            @PathVariable("currency") String currency
+    public ResponseEntity<Book> findBook(@PathVariable("id") Long id,
+                                         @PathVariable("currency") String currency
     ) {
         Book book = bookService.findBook(id, currency);
         return ResponseEntity.ok(book);
@@ -41,6 +40,6 @@ public class BookController {
 
     public ResponseEntity<String> fallbackMethod(Exception exception) {
         logger.info("Falback method in execution {}", exception.getMessage());
-        return ResponseEntity.ok("Falback method active " + exception.getMessage() );
+        return ResponseEntity.ok("Falback method active " + exception.getMessage());
     }
 }
